@@ -33,7 +33,7 @@ const SideBar = () => {
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
         </svg>
-      </button>
+    </button>
 
       <aside
         className={`fixed left-0 top-30 z-40 h-screen w-64  transition-transform ${navbarHidden ? 'sm:translate-x-0 -translate-x-full' : ''}`}
@@ -198,6 +198,8 @@ const SignedInView = () => {
 
   const user = useUser();
 
+  console.log('user', user)
+
   return (
     // <div className="flex h-full w-full">
     //   {user.isSignedIn && <SignOutButton />}
@@ -279,9 +281,10 @@ const Home: NextPage = () => {
             <h1 className="p-4 text-4xl">Welcome to LyricLabs</h1>
             <h3 className="text-xl">Your poetry writing assistant</h3>
             <div className="p-8">
-              <button className="rounded bg-slate-200 p-2">
+              {user.isLoaded && <button className="rounded bg-slate-200 p-2">
                 <SignInButton />
-              </button>
+              </button>}
+              {!user.isLoaded && <p>Loading...</p>}
             </div>
             <h3>TODO: render poems nicely</h3>
             {data?.map((p) => (
