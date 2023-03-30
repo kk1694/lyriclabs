@@ -6,18 +6,13 @@ import { useState } from "react";
 import { api } from "~/utils/api";
 
 
-const SignedInView = () => {
+const SideBar = () => {
 
   const [navbarHidden, setNavbarHidden] = useState(true)
 
-  const user = useUser();
-
   return (
-    // <div className="flex h-full w-full">
-    //   {user.isSignedIn && <SignOutButton />}
-    // </div>
-    <div className="h-full w-full">
-      <button
+    <>
+    <button
         type="button"
         onClick={() => {
           setNavbarHidden(prev => !prev)
@@ -193,6 +188,24 @@ const SignedInView = () => {
         </div>
       </aside>
 
+    </>
+  )
+
+}
+
+
+const SignedInView = () => {
+
+  const user = useUser();
+
+  return (
+    // <div className="flex h-full w-full">
+    //   {user.isSignedIn && <SignOutButton />}
+    // </div>
+    <div className="h-full w-full">
+
+      <SideBar />
+      
       <div className="p-4 sm:ml-64">
         <div className="rounded-lg border-2 border-dashed border-gray-200 p-4 dark:border-gray-700">
           <div className="mb-4 grid grid-cols-3 gap-4">
