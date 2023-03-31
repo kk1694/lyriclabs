@@ -75,9 +75,44 @@ const SideBar = () => {
               <li>
                 <a
                   href="#"
-                  className="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center rounded-lg py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   <svg
+                    height="24"
+                    width="24"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="-5.12 -5.12 522.24 522.24"
+                    fill="#000000"
+                    stroke="#000000"
+                    stroke-width="9.728"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke="#CCCCCC"
+                      stroke-width="20.48"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        fill="#e2e8f0"
+                        d="M140.874,375.715H89.04c-36.573,0-66.221,29.647-66.221,66.221l0,0 c0,36.573,29.647,66.221,66.221,66.221h177.671v-97.646L140.874,375.715z"
+                      ></path>{" "}
+                      <path
+                        fill="#e2e8f0"
+                        d="M360.768,136.285L150.707,3.843H84.011l0,0c-63.144,0-103.656,67.127-74.229,122.995l143.846,273.09 h-0.023c26.39,48.886-9.012,108.229-64.566,108.229h349.485c55.555,0,90.956-59.342,64.566-108.229L360.768,136.285z"
+                      ></path>{" "}
+                      <path
+                        fill="#e2e8f0"
+                        d="M84.011,3.843c36.573,0,66.221,29.649,66.221,66.221l0,0c0,36.573-29.649,66.221-66.221,66.221 h276.757c36.573,0,66.221-29.649,66.221-66.221l0,0c0-36.573-29.649-66.221-66.221-66.221C360.768,3.843,84.011,3.843,84.011,3.843z "
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                  {/* <svg
                     aria-hidden="true"
                     className="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                     fill="currentColor"
@@ -85,7 +120,7 @@ const SideBar = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                  </svg>
+                  </svg> */}
                   <span className="ml-3 flex-1 whitespace-nowrap">Kanban</span>
                   <span className="ml-3 inline-flex items-center justify-center rounded-full bg-gray-200 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                     Pro
