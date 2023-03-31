@@ -9,6 +9,7 @@ export const poemRouter = createTRPCRouter({
   }),
   fromUser: privateProcedure.query(({ ctx }) => {
     return ctx.prisma.poem.findMany({
+      select: { id: true, title: true, createdAt: true },
       where: {
         authorId: ctx.userId,
       },
