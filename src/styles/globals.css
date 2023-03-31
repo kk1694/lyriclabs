@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-purple-400 text-slate-800
+    @apply bg-purple-400 text-slate-800;
+
+    overscroll-behavior: none;
 }
