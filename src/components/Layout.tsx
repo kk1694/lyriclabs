@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { useState } from "react";
 import LoadingSpinner from "~/components/LoadingSpinner";
 
@@ -41,8 +41,8 @@ const SideBar = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            fill-rule="evenodd"
+            clipRule="evenodd"
+            fillRule="evenodd"
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
         </svg>
@@ -98,8 +98,8 @@ const SideBar = () => {
                       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                       <g
                         id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         stroke="#CCCCCC"
                         stroke-width="20.48"
                       ></g>
@@ -148,7 +148,7 @@ const SideBar = () => {
   );
 };
 
-export const SignedInLayout = (props: PropsWithChildren) => {
+const SignedInLayout = (props: PropsWithChildren) => {
   return (
     <div className="h-screen w-screen">
       <SideBar />
@@ -156,3 +156,33 @@ export const SignedInLayout = (props: PropsWithChildren) => {
     </div>
   );
 };
+
+const Layout = (props: PropsWithChildren) => {
+  const user = useUser();
+
+  return (
+    <>
+      <div className="h-screen w-screen">
+        {user.isSignedIn && <SignedInLayout>{props.children}</SignedInLayout>}
+
+        {!user.isSignedIn && (
+          <div className="flex h-full w-full flex-col items-center justify-center">
+            <h1 className="p-4 text-4xl">Welcome to LyricLabs</h1>
+            <h3 className="text-xl">Your poetry writing assistant</h3>
+            <div className="p-8">
+              {user.isLoaded && (
+                <button className="rounded bg-slate-200 p-2">
+                  <SignInButton />
+                </button>
+              )}
+              {!user.isLoaded && <p>Loading...</p>}
+            </div>
+            <h3>TODO: render poems nicely</h3>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Layout;
