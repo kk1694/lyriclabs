@@ -49,25 +49,27 @@ const SideBar = () => {
         }`}
         aria-label="Sidebar"
       >
-        <div className="flex h-full flex-col justify-between overflow-y-clip bg-slate-200 p-2">
-          <div className="h-full overflow-y-auto bg-green-200 px-3 py-4 dark:bg-gray-800">
+        <div className="flex h-full flex-col justify-between overflow-y-clip bg-slate-200 px-3 py-4">
+          <div className="h-full overflow-y-auto ">
             <ul className="space-y-2 font-medium">
               <li>
                 <a
                   href="#"
-                  className="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center rounded-lg py-2 text-gray-900 hover:bg-gray-100"
                 >
                   <svg
-                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
                     className="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                     fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M19 13h-6v6a1 1 0 0 1-2 0v-6H5a1 1 0 0 1 0-2h6V5a1 1 0 0 1 2 0v6h6a1 1 0 0 1 0 2z" />
                   </svg>
-                  <span className="ml-3">Dashboard</span>
+
+                  <span className="ml-3">New</span>
                 </a>
               </li>
               <li>
@@ -201,18 +203,16 @@ const SideBar = () => {
           </div>
 
           <div className="">
-            <div className="flex h-12 gap-4">
-              <img
-                src={user.profileImageUrl}
-                alt="profile picture"
-                className="h-12 w-12 rounded-full"
-              />
-              <SignOutButton>
-                <button className="flex h-full grow items-center text-lg">
-                  Log out
-                </button>
-              </SignOutButton>
-            </div>
+            <SignOutButton>
+              <button className="flex h-12 w-full gap-4 rounded-lg font-medium text-gray-900 hover:bg-gray-100">
+                <img
+                  src={user.profileImageUrl}
+                  alt="profile picture"
+                  className="h-12 w-12 rounded-full"
+                />
+                <p className="flex h-full grow items-center">Log out</p>
+              </button>
+            </SignOutButton>
           </div>
         </div>
       </aside>
