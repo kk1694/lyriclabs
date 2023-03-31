@@ -2,6 +2,7 @@ import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import LoadingSpinner from "~/components/LoadingSpinner";
 
 import { api } from "~/utils/api";
 
@@ -75,6 +76,7 @@ const SideBar = () => {
                   <span className="ml-3">New</span>
                 </a>
               </li>
+              {isLoading && <LoadingSpinner />}
               {data?.map((poem) => (
                 <li key={poem.id}>
                   <a
