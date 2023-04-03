@@ -8,7 +8,7 @@ import { api } from "~/utils/api";
 const Poem: NextPage<{ id: string }> = (props) => {
   console.log("page props", props);
   const { data, isLoading } = api.poems.getById.useQuery({
-    id: "clfuudgfj0000d8htaknysfae",
+    id: props.id,
   });
 
   return (
