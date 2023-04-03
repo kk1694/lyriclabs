@@ -17,12 +17,30 @@ const Poem: NextPage<{ id: string }> = (props) => {
         <title>Edit poem</title>
       </Head>
       <Layout>
-        {JSON.stringify(data)}
         {isLoading && <LoadingSpinner />}
         {data && (
-          <div>
-            <h1>{data.title}</h1>
-            <p>{data.content}</p>
+          <div className="h-full">
+            <div className="flex h-[70%] w-full justify-center ">
+              <div className="mt-8 w-full max-w-2xl py-4">
+                <div className="text-2xl" contentEditable={true}>
+                  {data.title}
+                </div>
+                {data.lines.map((l, i) => (
+                  <div key={i} className="py-2 text-xl" contentEditable={true}>
+                    {l}
+                  </div>
+                ))}
+                <div contentEditable={true} className="py-2 text-xl">
+                  {" "}
+                </div>
+              </div>
+            </div>
+            <div className="flex h-[30%] justify-center">
+              <textarea
+                className="h-full w-full max-w-4xl border-2 border-dotted border-slate-600 text-lg outline-none focus:border-solid"
+                autoFocus
+              />
+            </div>
           </div>
         )}
       </Layout>

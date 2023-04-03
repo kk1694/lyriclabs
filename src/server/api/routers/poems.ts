@@ -30,7 +30,9 @@ export const poemRouter = createTRPCRouter({
         });
       }
 
-      return poem;
+      const lines = poem.content.split("\n");
+
+      return { ...poem, lines };
     }),
   fromUser: privateProcedure.query(({ ctx }) => {
     console.log("fetching fromuser");

@@ -14,7 +14,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <meta name="description" content="Write your AI assisted poems!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ClerkProvider>
   );
 };

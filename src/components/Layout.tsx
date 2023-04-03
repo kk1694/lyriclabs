@@ -152,7 +152,7 @@ const SignedInLayout = (props: PropsWithChildren) => {
   return (
     <div className="h-screen w-screen">
       <SideBar />
-      <main className="p-4 sm:ml-64">{props.children}</main>
+      <main className="h-full p-4 sm:ml-64">{props.children}</main>
     </div>
   );
 };
@@ -162,7 +162,7 @@ const Layout = (props: PropsWithChildren) => {
 
   return (
     <>
-      <div className="h-screen w-screen">
+      <div className="h-screen w-screen bg-slate-50">
         {user.isSignedIn && <SignedInLayout>{props.children}</SignedInLayout>}
 
         {!user.isSignedIn && (
