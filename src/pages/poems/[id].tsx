@@ -1,15 +1,33 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import Layout from "~/components/Layout";
 import LoadingSpinner from "~/components/LoadingSpinner";
 
 import { api } from "~/utils/api";
+import useDebounce from "../hooks";
 
 const Poem: NextPage<{ id: string }> = (props) => {
-  console.log("page props", props);
-  const { data, isLoading } = api.poems.getById.useQuery({
+  const [title, setTitle] = useState<string | null>(null);
+  const debouncedTitle = useDebounce(title, 1000);
+
+  const { data, isFetched, isLoading } = api.poems.getById.useQuery({
     id: props.id,
   });
+
+  useEffect(() => {
+    if (isFetched && data) {
+      setTitle(data.title);
+    }
+  }, [isFetched]);
+
+  const changeTitle = api.poems.changeTitle.useMutation();
+
+  useEffect(() => {
+    if (debouncedTitle !== null && debouncedTitle !== data?.title) {
+      changeTitle.mutate({ id: props.id, title: debouncedTitle });
+    }
+  }, [debouncedTitle]);
 
   return (
     <>
@@ -22,17 +40,17 @@ const Poem: NextPage<{ id: string }> = (props) => {
           <div className="h-full">
             <div className="flex h-[70%] w-full justify-center ">
               <div className="mt-8 w-full max-w-2xl py-4">
-                <div className="text-2xl" contentEditable={true}>
-                  {data.title}
-                </div>
+                <input
+                  className="w-full bg-inherit text-2xl outline-none"
+                  value={title || ""}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
                 {data.lines.map((l, i) => (
-                  <div key={i} className="py-2 text-xl" contentEditable={true}>
+                  <div key={i} className="py-2 text-xl">
                     {l}
                   </div>
                 ))}
-                <div contentEditable={true} className="py-2 text-xl">
-                  {" "}
-                </div>
+                <div className="py-2 text-xl"> </div>
               </div>
             </div>
             <div className="flex h-[30%] justify-center">
