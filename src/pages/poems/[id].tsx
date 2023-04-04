@@ -7,9 +7,20 @@ import LoadingSpinner from "~/components/LoadingSpinner";
 import { api } from "~/utils/api";
 import useDebounce from "../hooks";
 
+const textAreaLines = (text: string, cols = 20) => {
+  let linecount = 0;
+  text.split("\n").forEach((line) => {
+    linecount += Math.ceil(line.length / cols) || 1;
+  });
+  console.log(text, linecount);
+  return linecount;
+};
+
 const Poem: NextPage<{ id: string }> = (props) => {
-  const [title, setTitle] = useState<string | null>(null);
-  const debouncedTitle = useDebounce(title, 1000);
+  const [content, setContent] = useState<string | null>(null);
+  const [lineCount, setLineCount] = useState(0);
+
+  const debouncedContent = useDebounce(content, 1000);
 
   const { data, isFetched, isLoading } = api.poems.getById.useQuery({
     id: props.id,
@@ -17,17 +28,18 @@ const Poem: NextPage<{ id: string }> = (props) => {
 
   useEffect(() => {
     if (isFetched && data) {
-      setTitle(data.title);
+      setContent(data.content);
+      setLineCount(textAreaLines(data.content));
     }
   }, [isFetched]);
 
-  const changeTitle = api.poems.changeTitle.useMutation();
+  const changeContent = api.poems.changeContent.useMutation();
 
   useEffect(() => {
-    if (debouncedTitle !== null && debouncedTitle !== data?.title) {
-      changeTitle.mutate({ id: props.id, title: debouncedTitle });
+    if (debouncedContent !== null && debouncedContent !== data?.content) {
+      changeContent.mutate({ id: props.id, content: debouncedContent });
     }
-  }, [debouncedTitle]);
+  }, [debouncedContent]);
 
   return (
     <>
@@ -39,23 +51,32 @@ const Poem: NextPage<{ id: string }> = (props) => {
         {data && (
           <div className="h-full">
             <div className="flex h-[70%] w-full justify-center ">
-              <div className="mt-8 w-full max-w-2xl py-4">
-                <input
-                  className="w-full bg-inherit text-2xl outline-none"
+              <div className="my-2 w-full max-w-2xl overflow-y-scroll rounded bg-slate-100 p-4">
+                {/* <input
+                  className="my-3 w-full bg-inherit text-2xl outline-none"
                   value={title || ""}
                   onChange={(e) => setTitle(e.target.value)}
-                />
-                {data.lines.map((l, i) => (
-                  <div key={i} className="py-2 text-xl">
-                    {l}
-                  </div>
-                ))}
+                /> */}
+                {content !== null && (
+                  <textarea
+                    className="md:text-md resize-none whitespace-pre-wrap bg-inherit text-sm outline-none lg:text-xl"
+                    value={content}
+                    cols={48}
+                    onChange={(e) => {
+                      setContent(e.target.value);
+                      setLineCount(
+                        textAreaLines(e.target.value, e.target.cols)
+                      );
+                    }}
+                    rows={lineCount + 2}
+                  />
+                )}
                 <div className="py-2 text-xl"> </div>
               </div>
             </div>
             <div className="flex h-[30%] justify-center">
               <textarea
-                className="h-full w-full max-w-4xl border-2 border-dotted border-slate-600 text-lg outline-none focus:border-solid"
+                className="h-full w-full max-w-4xl rounded border-2 border-dotted border-slate-600 p-4 text-lg outline-none focus:border-solid"
                 autoFocus
               />
             </div>

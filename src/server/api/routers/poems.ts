@@ -37,10 +37,9 @@ export const poemRouter = createTRPCRouter({
 
       return { ...poem, lines };
     }),
-  changeTitle: privateProcedure
-    .input(z.object({ id: z.string(), title: z.string() }))
+  changeContent: privateProcedure
+    .input(z.object({ id: z.string(), content: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      console.log("fetching changeTitle", input);
       const poem = await ctx.prisma.poem.findFirst({
         where: { id: input.id },
       });
@@ -49,9 +48,24 @@ export const poemRouter = createTRPCRouter({
 
       return ctx.prisma.poem.update({
         where: { id: input.id },
-        data: { title: input.title },
+        data: { content: input.content },
       });
     }),
+  // changeTitle: privateProcedure
+  //   .input(z.object({ id: z.string(), title: z.string() }))
+  //   .mutation(async ({ ctx, input }) => {
+  //     console.log("fetching changeTitle", input);
+  //     const poem = await ctx.prisma.poem.findFirst({
+  //       where: { id: input.id },
+  //     });
+
+  //     validatePoem(poem, ctx.userId);
+
+  //     return ctx.prisma.poem.update({
+  //       where: { id: input.id },
+  //       data: { title: input.title },
+  //     });
+  //   }),
 
   fromUser: privateProcedure.query(({ ctx }) => {
     console.log("fetching fromuser");
