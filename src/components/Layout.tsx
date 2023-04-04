@@ -93,15 +93,15 @@ const SideBar = () => {
                       viewBox="-5.12 -5.12 522.24 522.24"
                       fill="#000000"
                       stroke="#000000"
-                      stroke-width="9.728"
+                      strokeWidth="9.728"
                     >
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                       <g
                         id="SVGRepo_tracerCarrier"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         stroke="#CCCCCC"
-                        stroke-width="20.48"
+                        strokeWidth="20.48"
                       ></g>
                       <g id="SVGRepo_iconCarrier">
                         {" "}

@@ -22,6 +22,7 @@
     "@trpc/server": "^10.18.0",
     "next": "^13.2.4",
     "react": "18.2.0",
+    "react-contenteditable": "^3.3.7",
     "react-dom": "18.2.0",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
